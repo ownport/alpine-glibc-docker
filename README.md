@@ -8,3 +8,6 @@ Alpine glibc docker image
 make build-alpine-glibc-image
 ```
 
+## Links
+
+- [frol/docker-alpine-glibc](https://github.com/frol/docker-alpine-glibc)
