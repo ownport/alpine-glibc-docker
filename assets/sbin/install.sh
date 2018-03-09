@@ -2,7 +2,11 @@
 
 set -eu
 
-export LANG=C.UTF-8
+export SHELL=/bin/sh 
+export LC_ALL=en_US.UTF-8 
+export LANG=en_US.UTF-8 
+export LANGUAGE=en_US.UTF-8
+
 export ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download"
 export ALPINE_GLIBC_PACKAGE_VERSION="2.27-r0"
 export ALPINE_GLIBC_BASE_PACKAGE_FILENAME="glibc-$ALPINE_GLIBC_PACKAGE_VERSION.apk"
@@ -24,6 +28,8 @@ apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
     rm "/etc/apk/keys/sgerrand.rsa.pub" && \
     /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 "$LANG" || true && \
     echo "export LANG=$LANG" > /etc/profile.d/locale.sh && \
+    echo "export LC_ALL=$LC_ALL" >> /etc/profile.d/locale.sh && \
+    echo "export LANGUAGE=$LANGUAGE" >> /etc/profile.d/locale.sh && \
     \
     apk del glibc-i18n && \
     \
